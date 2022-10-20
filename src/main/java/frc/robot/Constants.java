@@ -14,6 +14,16 @@ package frc.robot;
  */
 public final class Constants {
 
+    //Driver Controller
     public static final int Driver_Controller_Port = 0;
+
+    //Drivetrain CAN IDs
+    public static final int Right_Leader_ID = 0;
+    public static final int Right_Middle_ID = 1;
+    public static final int Right_Back_ID = 2;
+
+    public static final int Left_Leader_ID = 3;
+    public static final int Left_Middle_ID = 4;
+    public static final int Left_Back_ID = 5;
 
 }

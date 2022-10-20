@@ -8,7 +8,12 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.pilotlib.controllerwrappers.DriverController;
+import frc.pilotlib.controllerwrappers.DriverController.Axis;
+
 import static frc.robot.Constants.*;
+
+import frc.robot.commands.JoystickDriveCommand;
+import frc.robot.subsystems.DriveBaseSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,10 +25,17 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriverController m_driverController = new DriverController(Driver_Controller_Port);
 
+  private final DriveBaseSubsystem m_driveBaseSubsystem = new DriveBaseSubsystem();
+
+  private final JoystickDriveCommand m_joystickDriveCommand = new JoystickDriveCommand(m_driverController.getAxis(Axis.kLeftY), m_driverController.getAxis(Axis.kRightX), m_driveBaseSubsystem);
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+
+    m_driveBaseSubsystem.setDefaultCommand(m_joystickDriveCommand);
+
   }
 
   /**
