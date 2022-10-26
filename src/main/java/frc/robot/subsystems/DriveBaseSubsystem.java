@@ -26,7 +26,6 @@ public class DriveBaseSubsystem extends SubsystemBase {
         addChild("Left Middle", m_leftMiddle);
         addChild("Left Back", m_leftBack);
 
-
     }
 
     public void chassisControl(double leftJoyStick, double rightJoyStick){

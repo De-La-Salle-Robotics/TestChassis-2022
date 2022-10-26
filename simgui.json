@@ -1,0 +1,37 @@
+{
+  "HALProvider": {
+    "Other Devices": {
+      "Talon FX[0]": {
+        "header": {
+          "open": true
+        }
+      },
+      "Talon FX[4]": {
+        "header": {
+          "open": true
+        }
+      }
+    }
+  },
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/LiveWindow/DriveBaseSubsystem/Left Back": "Motor Controller",
+      "/LiveWindow/DriveBaseSubsystem/Left Leader": "Motor Controller",
+      "/LiveWindow/DriveBaseSubsystem/Left Middle": "Motor Controller",
+      "/LiveWindow/DriveBaseSubsystem/Right Back": "Motor Controller",
+      "/LiveWindow/DriveBaseSubsystem/Right Leader": "Motor Controller",
+      "/LiveWindow/DriveBaseSubsystem/Right Middle": "Motor Controller",
+      "/LiveWindow/LEDSubsystem": "Subsystem",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler"
+    }
+  },
+  "NetworkTables": {
+    "LiveWindow": {
+      "DriveBaseSubsystem": {
+        "open": true
+      },
+      "open": true
+    }
+  }
+}

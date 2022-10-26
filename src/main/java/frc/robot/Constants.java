@@ -26,4 +26,7 @@ public final class Constants {
     public static final int Left_Middle_ID = 4;
     public static final int Left_Back_ID = 5;
 
+    //Change ID to match what it should actually be (after looking at RIO)
+    public static final int LED_0_ID = 6;
+
 }

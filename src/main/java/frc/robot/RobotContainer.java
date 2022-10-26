@@ -9,11 +9,14 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.pilotlib.controllerwrappers.DriverController;
 import frc.pilotlib.controllerwrappers.DriverController.Axis;
+import frc.pilotlib.controllerwrappers.DriverController.Button;
 
 import static frc.robot.Constants.*;
 
 import frc.robot.commands.JoystickDriveCommand;
+import frc.robot.commands.LEDCommand;
 import frc.robot.subsystems.DriveBaseSubsystem;
+import frc.robot.subsystems.LEDSubsystem;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -26,8 +29,10 @@ public class RobotContainer {
   private final DriverController m_driverController = new DriverController(Driver_Controller_Port);
 
   private final DriveBaseSubsystem m_driveBaseSubsystem = new DriveBaseSubsystem();
-
   private final JoystickDriveCommand m_joystickDriveCommand = new JoystickDriveCommand(m_driverController.getAxis(Axis.kLeftY), m_driverController.getAxis(Axis.kRightX), m_driveBaseSubsystem);
+
+  private final LEDSubsystem m_LEDSubsystem = new LEDSubsystem();
+  private final LEDCommand m_LEDCommand = new LEDCommand(m_driverController.getButtonSupplier(Button.kB), m_driverController.getButtonSupplier(Button.kA), m_driverController.getButtonSupplier(Button.kX), m_LEDSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
@@ -35,6 +40,7 @@ public class RobotContainer {
     configureButtonBindings();
 
     m_driveBaseSubsystem.setDefaultCommand(m_joystickDriveCommand);
+    m_LEDSubsystem.setDefaultCommand(m_LEDCommand);
 
   }
 
