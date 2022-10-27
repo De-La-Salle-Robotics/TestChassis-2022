@@ -7,13 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.pilotlib.controllerwrappers.DriverController;
-import frc.pilotlib.controllerwrappers.DriverController.Axis;
-import frc.pilotlib.controllerwrappers.DriverController.Button;
 
 import static frc.robot.Constants.*;
 
-import frc.robot.commands.JoystickDriveCommand;
+import frc.robot.commands.TeleopDriveCommand;
 import frc.robot.commands.LEDCommand;
 import frc.robot.subsystems.DriveBaseSubsystem;
 import frc.robot.subsystems.LEDSubsystem;
@@ -26,13 +23,12 @@ import frc.robot.subsystems.LEDSubsystem;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DriverController m_driverController = new DriverController(Driver_Controller_Port);
 
   private final DriveBaseSubsystem m_driveBaseSubsystem = new DriveBaseSubsystem();
-  private final JoystickDriveCommand m_joystickDriveCommand = new JoystickDriveCommand(m_driverController.getAxis(Axis.kLeftY), m_driverController.getAxis(Axis.kRightX), m_driveBaseSubsystem);
+  private final TeleopDriveCommand m_joystickDriveCommand = new TeleopDriveCommand(leftJoyStickY, rightJoyStickX, leftBumper, rightBumper, m_driveBaseSubsystem);
 
   private final LEDSubsystem m_LEDSubsystem = new LEDSubsystem();
-  private final LEDCommand m_LEDCommand = new LEDCommand(m_driverController.getButtonSupplier(Button.kB), m_driverController.getButtonSupplier(Button.kA), m_driverController.getButtonSupplier(Button.kX), m_LEDSubsystem);
+  private final LEDCommand m_LEDCommand = new LEDCommand(button_B, button_A, button_X, m_LEDSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

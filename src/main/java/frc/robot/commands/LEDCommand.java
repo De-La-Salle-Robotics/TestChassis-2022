@@ -28,12 +28,12 @@ public class LEDCommand extends CommandBase{
 
     @Override
     public void initialize(){
-        m_LEDSubsystem.initializeLED0();
+        m_LEDSubsystem.initEndLED0(true);
     }
 
     @Override
     public void end(boolean interrupted){
-        
+        m_LEDSubsystem.initEndLED0(false);
     }
 
     @Override

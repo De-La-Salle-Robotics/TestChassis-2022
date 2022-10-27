@@ -17,6 +17,8 @@ public class DriveBaseSubsystem extends SubsystemBase {
     private PilotFX m_leftMiddle = new PilotFX(Left_Middle_ID);
     private PilotFX m_leftBack = new PilotFX(Left_Back_ID);
 
+    public double speedControl;
+
     public DriveBaseSubsystem(){
         addChild("Right Leader", m_rightLeader);
         addChild("Right Middle", m_rightMiddle);
@@ -28,10 +30,12 @@ public class DriveBaseSubsystem extends SubsystemBase {
 
     }
 
-    public void chassisControl(double leftJoyStick, double rightJoyStick){
+    public void chassisControl(double leftJoyStick, double rightJoyStick, double speedControl){
 
-        double leftSidePower = leftJoyStick + rightJoyStick;
-        double rightSidePower = leftJoyStick - rightJoyStick;
+        System.out.println(speedControl);
+
+        double leftSidePower = (leftJoyStick + rightJoyStick) * speedControl;
+        double rightSidePower = (leftJoyStick - rightJoyStick) * speedControl;
 
         m_rightLeader.set(ControlMode.PercentOutput, rightSidePower);
         m_rightMiddle.set(ControlMode.PercentOutput, rightSidePower);
@@ -41,5 +45,6 @@ public class DriveBaseSubsystem extends SubsystemBase {
         m_leftMiddle.set(ControlMode.PercentOutput, leftSidePower);
         m_leftBack.set(ControlMode.PercentOutput, leftSidePower);
 
+        return;
     }
 }
