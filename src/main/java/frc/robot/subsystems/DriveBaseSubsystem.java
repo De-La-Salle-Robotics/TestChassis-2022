@@ -30,12 +30,11 @@ public class DriveBaseSubsystem extends SubsystemBase {
 
     }
 
-    public void chassisControl(double leftJoyStick, double rightJoyStick, double speedControl){
+    public void chassisControl(double leftTrigger, double rightTrigger, double rightJoyStick, double speedControl){
 
-        System.out.println(speedControl);
-
-        double leftSidePower = (leftJoyStick + rightJoyStick) * speedControl;
-        double rightSidePower = (leftJoyStick - rightJoyStick) * speedControl;
+        double triggerInput = rightTrigger - leftTrigger;
+        double leftSidePower = (triggerInput + rightJoyStick) * speedControl;
+        double rightSidePower = (triggerInput - rightJoyStick) * speedControl;
 
         m_rightLeader.set(ControlMode.PercentOutput, rightSidePower);
         m_rightMiddle.set(ControlMode.PercentOutput, rightSidePower);

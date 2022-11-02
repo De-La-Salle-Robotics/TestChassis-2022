@@ -8,19 +8,25 @@ import frc.robot.subsystems.DriveBaseSubsystem;
 
 public class TeleopDriveCommand extends CommandBase {
     
+    private DoubleSupplier m_leftTrigger;
+    private DoubleSupplier m_rightTrigger;
     private DoubleSupplier m_rightJoystick;
-    private DoubleSupplier m_leftJoystick;
+
     private BooleanSupplier m_leftBumper;
     private BooleanSupplier m_rightBumper;
     private double speedControl;
+
     private DriveBaseSubsystem m_DriveBaseSubsystem;
 
-    public TeleopDriveCommand(DoubleSupplier leftJoystick, DoubleSupplier rightJoystick, BooleanSupplier leftBumper, BooleanSupplier rightBumper, DriveBaseSubsystem driveBaseSubsystem){
+    public TeleopDriveCommand(DoubleSupplier leftTrigger, DoubleSupplier rightTrigger, DoubleSupplier rightJoystick, BooleanSupplier leftBumper, BooleanSupplier rightBumper, DriveBaseSubsystem driveBaseSubsystem){
 
-        m_leftJoystick = leftJoystick;
+        m_leftTrigger = leftTrigger;
+        m_rightTrigger = rightTrigger;
         m_rightJoystick = rightJoystick;
+
         m_leftBumper = leftBumper;
         m_rightBumper = rightBumper;
+
         m_DriveBaseSubsystem = driveBaseSubsystem;
         addRequirements(m_DriveBaseSubsystem);
 
@@ -29,7 +35,7 @@ public class TeleopDriveCommand extends CommandBase {
     @Override
     public void initialize(){
         speedControl = 0.25;
-        m_DriveBaseSubsystem.chassisControl(0, 0, speedControl);
+        m_DriveBaseSubsystem.chassisControl(0.0, 0.0, 0.0, speedControl);
     }
 
     @Override
@@ -43,13 +49,13 @@ public class TeleopDriveCommand extends CommandBase {
         }
 
         //The left joystick is negative due to the controller being in pilot/flight mode
-        m_DriveBaseSubsystem.chassisControl(-m_leftJoystick.getAsDouble(), m_rightJoystick.getAsDouble(), speedControl);
+        m_DriveBaseSubsystem.chassisControl(m_leftTrigger.getAsDouble(), m_rightTrigger.getAsDouble(), m_rightJoystick.getAsDouble(), speedControl);
     }
 
     @Override
     public void end(boolean interrupted){
         speedControl = 0.25;
-        m_DriveBaseSubsystem.chassisControl(0, 0, speedControl);
+        m_DriveBaseSubsystem.chassisControl(0.0, 0.0, 0.0, speedControl);
     }
 
     @Override

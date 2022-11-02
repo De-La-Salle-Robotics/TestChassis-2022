@@ -25,7 +25,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   private final DriveBaseSubsystem m_driveBaseSubsystem = new DriveBaseSubsystem();
-  private final TeleopDriveCommand m_joystickDriveCommand = new TeleopDriveCommand(leftJoyStickY, rightJoyStickX, leftBumper, rightBumper, m_driveBaseSubsystem);
+  private final TeleopDriveCommand m_teleopDriveCommand = new TeleopDriveCommand(leftTrigger, rightTrigger, rightJoyStickX, leftBumper, rightBumper, m_driveBaseSubsystem);
 
   private final LEDSubsystem m_LEDSubsystem = new LEDSubsystem();
   private final LEDCommand m_LEDCommand = new LEDCommand(button_B, button_A, button_X, m_LEDSubsystem);
@@ -35,7 +35,7 @@ public class RobotContainer {
     // Configure the button bindings
     configureButtonBindings();
 
-    m_driveBaseSubsystem.setDefaultCommand(m_joystickDriveCommand);
+    m_driveBaseSubsystem.setDefaultCommand(m_teleopDriveCommand);
     m_LEDSubsystem.setDefaultCommand(m_LEDCommand);
 
   }

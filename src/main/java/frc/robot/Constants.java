@@ -39,7 +39,8 @@ public final class Constants {
     //Controls
     private static final DriverController m_driverController = new DriverController(Driver_Controller_Port);
 
-    public static final DoubleSupplier leftJoyStickY = m_driverController.getAxis(Axis.kLeftY);
+    public static final DoubleSupplier leftTrigger = m_driverController.getAxis(Axis.kLeftTrigger);
+    public static final DoubleSupplier rightTrigger = m_driverController.getAxis(Axis.kRightTrigger);
     public static final DoubleSupplier rightJoyStickX = m_driverController.getAxis(Axis.kRightX);
 
     public static final BooleanSupplier leftBumper = m_driverController.getButtonSupplier(Button.kLeftBumper);
