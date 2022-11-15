@@ -13,19 +13,17 @@ public class TeleopDriveCommand extends CommandBase {
     private DoubleSupplier m_rightJoystick;
 
     private BooleanSupplier m_leftBumper;
-    private BooleanSupplier m_rightBumper;
     private double speedControl;
 
     private DriveBaseSubsystem m_DriveBaseSubsystem;
 
-    public TeleopDriveCommand(DoubleSupplier leftTrigger, DoubleSupplier rightTrigger, DoubleSupplier rightJoystick, BooleanSupplier leftBumper, BooleanSupplier rightBumper, DriveBaseSubsystem driveBaseSubsystem){
+    public TeleopDriveCommand(DoubleSupplier leftTrigger, DoubleSupplier rightTrigger, DoubleSupplier rightJoystick, BooleanSupplier leftBumper, DriveBaseSubsystem driveBaseSubsystem){
 
         m_leftTrigger = leftTrigger;
         m_rightTrigger = rightTrigger;
         m_rightJoystick = rightJoystick;
 
         m_leftBumper = leftBumper;
-        m_rightBumper = rightBumper;
 
         m_DriveBaseSubsystem = driveBaseSubsystem;
         addRequirements(m_DriveBaseSubsystem);
@@ -42,10 +40,10 @@ public class TeleopDriveCommand extends CommandBase {
     public void execute(){
 
         if (m_leftBumper.getAsBoolean()){
-            speedControl = 1;
-        }
-        if (m_rightBumper.getAsBoolean()){
             speedControl = 0.25;
+        }
+        else{
+            speedControl = 0.5;
         }
 
         //The left joystick is negative due to the controller being in pilot/flight mode

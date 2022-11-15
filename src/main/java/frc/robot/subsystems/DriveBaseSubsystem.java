@@ -28,6 +28,14 @@ public class DriveBaseSubsystem extends SubsystemBase {
         addChild("Left Middle", m_leftMiddle);
         addChild("Left Back", m_leftBack);
 
+        /* Factory default all devices to default settings */
+        m_rightLeader.configFactoryDefault();
+        m_rightMiddle.configFactoryDefault();
+        m_rightBack.configFactoryDefault();
+        m_leftLeader.configFactoryDefault();
+        m_leftMiddle.configFactoryDefault();
+        m_leftBack.configFactoryDefault();
+
     }
 
     public void chassisControl(double leftTrigger, double rightTrigger, double rightJoyStick, double speedControl){

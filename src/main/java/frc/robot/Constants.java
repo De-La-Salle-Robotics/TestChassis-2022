@@ -10,6 +10,7 @@ import java.util.function.DoubleSupplier;
 import frc.pilotlib.controllerwrappers.DriverController;
 import frc.pilotlib.controllerwrappers.DriverController.Axis;
 import frc.pilotlib.controllerwrappers.DriverController.Button;
+import frc.pilotlib.controllerwrappers.DriverController.POV;
 
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
@@ -33,9 +34,6 @@ public final class Constants {
     public static final int Left_Middle_ID = 4;
     public static final int Left_Back_ID = 5;
 
-    //Change ID to match what it should actually be (after looking at RIO, PWM)
-    public static final int LED_0_ID = 6;
-
     //Controls
     private static final DriverController m_driverController = new DriverController(Driver_Controller_Port);
 
@@ -44,10 +42,10 @@ public final class Constants {
     public static final DoubleSupplier rightJoyStickX = m_driverController.getAxis(Axis.kRightX);
 
     public static final BooleanSupplier leftBumper = m_driverController.getButtonSupplier(Button.kLeftBumper);
-    public static final BooleanSupplier rightBumper = m_driverController.getButtonSupplier(Button.kRightBumper);
 
-    public static final BooleanSupplier button_B = m_driverController.getButtonSupplier(Button.kB);
+    public static final boolean button_Start = m_driverController.getRawButtonPressed((byte) 8);
+
     public static final BooleanSupplier button_A = m_driverController.getButtonSupplier(Button.kA);
-    public static final BooleanSupplier button_X = m_driverController.getButtonSupplier(Button.kX);
+    public static final BooleanSupplier button_Y = m_driverController.getButtonSupplier(Button.kY);
 
 }

@@ -1,23 +1,4 @@
 {
-  "HALProvider": {
-    "Other Devices": {
-      "Talon FX[0]": {
-        "header": {
-          "open": true
-        }
-      },
-      "Talon FX[1]": {
-        "header": {
-          "open": true
-        }
-      },
-      "Talon FX[4]": {
-        "header": {
-          "open": true
-        }
-      }
-    }
-  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
@@ -34,6 +15,9 @@
   "NetworkTables": {
     "LiveWindow": {
       "DriveBaseSubsystem": {
+        "open": true
+      },
+      "LEDSubsystem": {
         "open": true
       },
       "open": true

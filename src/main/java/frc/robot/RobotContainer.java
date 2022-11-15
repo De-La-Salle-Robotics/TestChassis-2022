@@ -4,6 +4,7 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -25,10 +26,10 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   private final DriveBaseSubsystem m_driveBaseSubsystem = new DriveBaseSubsystem();
-  private final TeleopDriveCommand m_teleopDriveCommand = new TeleopDriveCommand(leftTrigger, rightTrigger, rightJoyStickX, leftBumper, rightBumper, m_driveBaseSubsystem);
+  private final TeleopDriveCommand m_teleopDriveCommand = new TeleopDriveCommand(leftTrigger, rightTrigger, rightJoyStickX, leftBumper, m_driveBaseSubsystem);
 
   private final LEDSubsystem m_LEDSubsystem = new LEDSubsystem();
-  private final LEDCommand m_LEDCommand = new LEDCommand(button_B, button_A, button_X, m_LEDSubsystem);
+  private final LEDCommand m_LEDCommand = new LEDCommand(button_A, button_Y, ()->{return !DriverStation.isEnabled();}, m_LEDSubsystem);
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

@@ -5,40 +5,53 @@ import java.util.function.BooleanSupplier;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.subsystems.LEDSubsystem;
 
-public class LEDCommand extends CommandBase{
-    
-    private LEDSubsystem m_LEDSubsystem;
-    private BooleanSupplier m_A;
-    private BooleanSupplier m_Y;
-    private BooleanSupplier m_B;
+public class LEDCommand extends CommandBase {
 
-    public LEDCommand(BooleanSupplier A, BooleanSupplier Y, BooleanSupplier B, LEDSubsystem ledSubsystem)
-    {
-        m_A = A;
+    private LEDSubsystem m_LEDSubsystem;
+    private BooleanSupplier m_Y;
+    private BooleanSupplier m_A;
+    private BooleanSupplier m_isDisabled;
+
+    public LEDCommand(BooleanSupplier A, BooleanSupplier Y, BooleanSupplier isDisabled, LEDSubsystem ledSubsystem) {
         m_Y = Y;
-        m_B = B;
+        m_A = A;
+        m_isDisabled = isDisabled;
+
         m_LEDSubsystem = ledSubsystem;
         addRequirements(m_LEDSubsystem);
     }
 
     @Override
-    public void execute(){
-        m_LEDSubsystem.updateLED0(m_A.getAsBoolean(), m_Y.getAsBoolean(), m_B.getAsBoolean());
+    public void execute() 
+    {
+
+        if (m_isDisabled.getAsBoolean()) 
+        {
+            m_LEDSubsystem.isDisabled();
+        } 
+        else
+        {
+            m_LEDSubsystem.PurpleGold();
+            m_LEDSubsystem.updateLED0(m_A.getAsBoolean(), m_Y.getAsBoolean());
+        }
     }
 
     @Override
-    public void initialize(){
-        m_LEDSubsystem.initEndLED0(true);
+    public void initialize() {
     }
 
     @Override
-    public void end(boolean interrupted){
-        m_LEDSubsystem.initEndLED0(false);
+    public void end(boolean interrupted) {
     }
 
     @Override
-    public boolean isFinished(){
+    public boolean isFinished() {
         return false;
+    }
+
+    @Override
+    public boolean runsWhenDisabled() {
+        return true;
     }
 
 }
